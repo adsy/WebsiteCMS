@@ -24,28 +24,40 @@
 	<small>Post Management System</small>
 </h1>
 
+<?php 
 
-<table class="table table-primary table-bordered table-hover ">
-	<thead>
-		<tr class="bg-danger">
-			<th>ID</th>
-			<th>Title</th>
-			<th>Author</th>
-			<th>Category</th>
-			<th>Status</th>
-			<th>Image</th>
-			<th>Tags</th>
-			<th>Comments</th>
-			<th>Date</th>
-		</tr>
-		<tbody>
-			<tr>
-				<?php DisplayPostsData();?>
-				
-			</tr>
-		</tbody>
-	</thead>
-</table>
+	if (isset($_GET['source'])) {
+		$source = $_GET['source'];
+	}
+	else
+	{
+		$source ='';
+	}
+	
+	switch ($source) {
+			
+			case 'addPosts';
+			include 'includes/addPosts.php';
+			break;
+			
+
+			case '2';
+			include '';
+			break;
+			
+			
+			case '3';
+			include '';
+			break;
+			
+		default:
+			include "includes/viewAllPosts.php";
+			break;
+	}
+	
+?>
+
+
 
 </div>
 </div>
