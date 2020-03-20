@@ -10,10 +10,11 @@ function GetCategoriesLink () {
 	$all_categories = mysqli_query($connection,$query);
 	
 	while($row = mysqli_fetch_assoc($all_categories)) {
+		$cat_id = $row['cat_id'];
 		$cat_title = $row['cat_title'];
 		
 		echo "<li>
-              	<a href='#'>{$cat_title}</a>
+              	<a href='category.php?category={$cat_id}'>{$cat_title}</a>
               </li>";
 	}
 }
@@ -40,6 +41,24 @@ function DisplayCategoriesData () {
 					</button>
 				</td>
 			  </tr>";
+	}
+}
+
+//Function that displays categories in select input field
+function CategorySelect () {
+	global $connection;
+	$query = "SELECT * FROM categories";
+	$load_cats = mysqli_query($connection,$query);
+	
+	if (!$load_cats) {
+			die('QUERY FAILED' . mysqli_error($connection));
+		}
+
+	while($row = mysqli_fetch_assoc($load_cats)) {
+
+		$cat_id = $row['cat_id'];
+		$cat_title = $row['cat_title'];
+		echo "<option value='{$cat_id}'>{$cat_title}</option>";
 	}
 }
 
@@ -73,9 +92,9 @@ function AddCategory ($cat_title) {
 function LoadEditCategory($cat_id) {
 	global $connection;
 	$query = "SELECT * FROM categories WHERE cat_id = $cat_id";
-	$update_cat = mysqli_query($connection,$query);
+	$load_cats = mysqli_query($connection,$query);
 
-	while($row = mysqli_fetch_assoc($update_cat)) {
+	while($row = mysqli_fetch_assoc($load_cats)) {
 		$cat_id = $row['cat_id'];
 		$cat_title = $row['cat_title'];
 
@@ -91,9 +110,9 @@ function UpdateCategory ($catTitle,$cat_id) {
 	global $connection;
 	$query = "UPDATE categories SET cat_title = '{$catTitle}' WHERE cat_id = {$cat_id}";
 	
-	$delete_query = mysqli_query($connection,$query);
+	$update_query = mysqli_query($connection,$query);
 	
-	if (!$delete_query) {
+	if (!$update_query) {
 			die('QUERY FAILED' . mysqli_error($connection));
 	}
 	header("Location: categories.php");
@@ -108,6 +127,80 @@ function GetAllPosts () {
 	$all_categories = mysqli_query($connection,$query);
 	
 	while($row = mysqli_fetch_assoc($all_categories)) {
+		$post_id = $row['post_id'];
+		$post_title = $row['post_title'];
+		$post_author = $row['post_author'];
+		$post_date = $row['post_date'];
+		$post_image = $row['post_image'];
+		$post_content = substr($row['post_content'],0,200);
+		$post_tags = $row['post_tags'];
+		
+		echo "<h2>
+              <a href='post.php?p_id={$post_id}'>{$post_title}</a>
+              </h2>
+              <p class='lead>
+                    by <a href=''>{$post_author}</a>
+                </p>
+                <p><span class='glyphicon glyphicon-time'></span> Posted on {$post_date}</p>
+                <hr>
+                <a href='post.php?p_id={$post_id}'><img class='img-responsive' src='images/{$post_image}' alt=''></a>
+                <hr>
+                <p>{$post_content}</p>
+                <a class='btn btn-primary'' href='#'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+
+                <hr>";
+	}
+
+}
+
+function GetAllPostsByCat ($cat_ID) {
+	global $connection;
+	$query = "SELECT * FROM posts WHERE post_category_id = {$cat_ID}";
+	
+	
+	$all_categories = mysqli_query($connection,$query);
+	
+	if (!$all_categories) {
+			die('QUERY FAILED' . mysqli_error($connection));
+	}
+	
+	while($row = mysqli_fetch_assoc($all_categories)) {
+		$post_id = $row['post_id'];
+		$post_title = $row['post_title'];
+		$post_author = $row['post_author'];
+		$post_date = $row['post_date'];
+		$post_image = $row['post_image'];
+		substr($row['post_content'],0,200);
+		$post_tags = $row['post_tags'];
+		
+		echo "<h2>
+              <a href='post.php?p_id={$post_id}'>{$post_title}</a>
+              </h2>
+              <p class='lead>
+                    by <a href=''>{$post_author}</a>
+                </p>
+                <p><span class='glyphicon glyphicon-time'></span> Posted on {$post_date}</p>
+                <hr>
+                <a href='post.php?p_id={$post_id}'><img class='img-responsive' src='images/{$post_image}' alt=''></a>
+                <hr>
+                <p>{$post_content}</p>
+                <a class='btn btn-primary'' href='#'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+
+                <hr>";
+	}
+
+}
+
+//Function that grabs single post
+function GetPost ($pID) {
+	global $connection;
+	$query = "SELECT * FROM posts WHERE post_id = {$pID}";
+	
+	
+	$all_categories = mysqli_query($connection,$query);
+	
+	while($row = mysqli_fetch_assoc($all_categories)) {
+		$post_id = $row['post_id'];
 		$post_title = $row['post_title'];
 		$post_author = $row['post_author'];
 		$post_date = $row['post_date'];
@@ -116,10 +209,10 @@ function GetAllPosts () {
 		$post_tags = $row['post_tags'];
 		
 		echo "<h2>
-              <a href='#'>{$post_title}</a>
+              <a href='post.php?p_id={$post_id}'>{$post_title}</a>
               </h2>
               <p class='lead>
-                    by <a href='index.php'>{$post_author}</a>
+                    by <a href=''>{$post_author}</a>
                 </p>
                 <p><span class='glyphicon glyphicon-time'></span> Posted on {$post_date}</p>
                 <hr>
@@ -178,7 +271,43 @@ function SearchPosts($searchText) {
 	}
 }
 
+//Function that adds post into DB from admin page
+function AddPosts($post) {
+	global $connection;
+	$post_title = $post['post_title'];
+	$post_category = $post['post_cat_id'];
+	$post_author = $post['post_author'];
+	$post_status = $post['post_status'];
 
+	$post_image = $_FILES['post_image']['name'];
+	$post_image_temp = $_FILES['post_image']['tmp_name'];
+
+	$post_content = $post['post_contents'];
+	$post_tags = $post['post_tags'];
+	$post_date = date('d-m-y');
+	$post_comment_count = 4;
+
+	move_uploaded_file($post_image_temp, "../images/$post_image");
+
+	$query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_content, post_tags, post_comment_count, post_status)";
+	$query .= "VALUES ('{$post_category}','{$post_title}', '{$post_author}', now(), '{$post_image}', '{$post_content}', '{$post_tags}', '{$post_comment_count}', '{$post_status}')";
+
+	$create_post = mysqli_query($connection,$query);
+
+	if (!$create_post) {
+		die('QUERY FAILED' . mysqli_error($connection));
+	}
+}
+
+//Function that deletes post in DB from admin page
+function DeletePosts($post_id) {
+	global $connection;
+	
+	$query = "DELETE FROM posts WHERE post_id = {$post_id}";
+	
+	$delete_query = mysqli_query($connection,$query);
+	header("Location: posts.php");
+}
 
 function DisplayPostsData () {
 	global $connection;
@@ -197,11 +326,25 @@ function DisplayPostsData () {
 		$post_tags = $row['post_tags'];
 		
 		
+		$query = "SELECT * FROM categories WHERE cat_id = {$post_category}";
+				
+		$category = mysqli_query($connection,$query);
+
+		if (!$category) {
+			die('QUERY FAILED' . mysqli_error($connection));
+		}
+
+		while($row = mysqli_fetch_assoc($category)) {
+
+			$cat_title = $row['cat_title'];
+		}
+		
+		
 		echo "<tr>
 				<td>{$post_id}</td>
 				<td>{$post_title}</td>
 				<td>{$post_author}</td>
-				<td>{$post_category}</td>
+				<td>{$cat_title}</td>
 				<td>{$post_status}</td>
 				<td><img class='image-responsive'
 				width='150' src='../images/$post_image'></td>
@@ -211,11 +354,13 @@ function DisplayPostsData () {
 				
 				
 				<td>
-					<button type='button' class='text-muted btn btn-danger'>
-						<a style='color:white; text-decoration:none;'  href='categories.php?delete={$post_id}'>Delete</a>
-					</button>
 					<button type='button' class='text-muted btn btn-warning'>
-						<a style='color:white; text-decoration:none;'  href='categories.php?edit={$post_id}'>Edit</a>
+						<a style='color:white; text-decoration:none;'  href='posts.php?source=editPosts&p_id={$post_id}'>Edit</a>
+					</button>
+				</td>
+				<td>
+					<button type='button' class='text-muted btn btn-danger'>
+						<a style='color:white; text-decoration:none;'  href='posts.php?delete={$post_id}'>Delete</a>
 					</button>
 				</td>
 			  </tr>";

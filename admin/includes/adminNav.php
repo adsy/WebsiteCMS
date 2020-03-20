@@ -16,7 +16,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="index.html">CMS ADMIN</a>
+                <a class="navbar-brand" href="index.php">CMS ADMIN</a>
             </div>
             
             
@@ -54,7 +54,7 @@
             <div class="collapse navbar-collapse navbar-ex1-collapse">
                 <ul class="nav navbar-nav side-nav">
                     <li>
-                        <a href="index.html"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
+                        <a href="index.php"><i class="fa fa-fw fa-dashboard"></i> Dashboard</a>
                     </li>
                     <li>
                         <a href="javascript:;" data-toggle="collapse" data-target="#post_dropdown"><i class="fa fa-fw fa-arrows-v"></i> Posts <i class="fa fa-fw fa-caret-down"></i></a>
@@ -63,7 +63,7 @@
                                 <a href="posts.php"> View All Posts </a>
                             </li>
                             <li>
-                                <a href="#">Add Posts</a>
+                                <a href="posts.php?source=addPosts">Add Posts</a>
                             </li>
                         </ul>
                     </li>
@@ -81,7 +81,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
+                    <li class="">
                         <a href="blank-page.html"><i class="fa fa-fw fa-file"></i> Comments</a>
                     </li>
                     <li>

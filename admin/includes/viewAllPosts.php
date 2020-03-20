@@ -12,6 +12,8 @@
 			<th>Tags</th>
 			<th>Comments</th>
 			<th>Date</th>
+			<th>Edit</th>
+			<th>Delete</th>
 		</tr>
 		<tbody>
 			<tr>
@@ -21,3 +23,15 @@
 		</tbody>
 	</thead>
 </table>
+
+
+
+
+<?php 
+
+if (isset($_GET['delete'])){
+	$post_id = $_GET['delete'];
+	DeletePosts($post_id);
+}
+
+?>

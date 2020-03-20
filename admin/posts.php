@@ -41,8 +41,8 @@
 			break;
 			
 
-			case '2';
-			include '';
+			case 'editPosts';
+			include 'includes/editPosts.php';
 			break;
 			
 			

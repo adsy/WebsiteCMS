@@ -17,7 +17,7 @@
                     
                     
                 </button>
-                <a class="navbar-brand" href="#">CMS WEBSITE</a>
+                <a class="navbar-brand" href="index.php">Adam' CMS Website</a>
             </div>
             
             

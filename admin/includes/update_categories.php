@@ -1,5 +1,5 @@
 <!--  Form to update category name	-->
-<br><br><br>
+<br>
 	<form class="" action="" method="post">
 	
 	
@@ -27,7 +27,7 @@
 
 
 
-				LoadEditCategory($cat_id);
+				LoadEditCategory($cat_id); }
 
 				
 			?>
