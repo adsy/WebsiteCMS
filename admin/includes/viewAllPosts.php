@@ -12,6 +12,7 @@
 			<th>Tags</th>
 			<th>Comments</th>
 			<th>Date</th>
+			<th>Publish</th>
 			<th>Edit</th>
 			<th>Delete</th>
 		</tr>
@@ -32,6 +33,11 @@
 if (isset($_GET['delete'])){
 	$post_id = $_GET['delete'];
 	DeletePosts($post_id);
+}
+
+if (isset($_GET['publish'])){
+	$post_id = $_GET['publish'];
+ 	ApprovePost($post_id);
 }
 
 ?>

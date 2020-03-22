@@ -21,7 +21,7 @@
 
 <h1 class="page-header">
 	CMS ADMIN <br>
-	<small>Post Management System</small>
+	<small>Manage Posts</small>
 </h1>
 
 <?php 

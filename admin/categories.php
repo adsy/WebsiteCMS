@@ -21,7 +21,7 @@
 
 <h1 class="page-header">
 	CMS ADMIN <br>
-	<small>Category Management System</small>
+	<small>Manage Categories</small>
 </h1>
 
 <div class="col-xs-6">
@@ -82,7 +82,8 @@
 			<tr class="bg-danger">
 				<th>ID</th>
 				<th>Category Title</th>
-				<th>REMOVE CATEGORY</th>
+				<th>Edit</th>
+				<th>Delete</th>
 			</tr>
 		</thead>
 		<tbody>

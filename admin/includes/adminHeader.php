@@ -1,7 +1,16 @@
-<?php ob_start();?>
 <?php include "../includes/queries.php";?>
+<?php ob_start();?>
+<?php session_start(); ?>
 
 
+<?php 
+if (isset($_SESSION['role'])){
+	if ($_SESSION['role'] == 'User') {
+		header ("Location: ../index.php");
+	}}
+		
+	
+?>
 
 <!DOCTYPE html>
 <html lang="en">

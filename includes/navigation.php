@@ -1,4 +1,6 @@
+
 <?php include "queries.php";?>
+        
          <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
         <div class="container">
            
@@ -17,7 +19,7 @@
                     
                     
                 </button>
-                <a class="navbar-brand" href="index.php">Adam' CMS Website</a>
+                <a class="navbar-brand" href="index.php">Adam's CMS Website</a>
             </div>
             
             
@@ -35,8 +37,20 @@
 					
 					?>
                    <li>
-                   		<a href="admin">ADMIN</a>
+                  		<?php 
+					   		
+					   		if (isset($_SESSION['role'])) {
+								if ($_SESSION['role'] == 'Admin')
+								{
+									echo "<a href='admin'>ADMIN</a>";
+								}
+							}
+					   		
+					   	?>
+                  		
+                   		
                    </li>
+                   
                     
                     
                     

@@ -19,7 +19,7 @@
 
                 <h1 class="page-header pb-5">
                     Example CMS Website by Adam Brittain <br>
-                    <small>PHP, Bootstrap</small>
+                   
                 </h1>
 
                 <!-- First Blog Post -->

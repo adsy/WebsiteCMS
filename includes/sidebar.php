@@ -1,5 +1,52 @@
 <div class="col-md-4">
 
+
+	
+	
+	<!-- Login -->
+	<div class="well">
+
+		<?php 
+		if (isset($_SESSION['username'])) {
+			echo "<h3>Welcome ";
+			echo $_SESSION['username'];
+			echo "</h3>
+				  <form action='includes/logout.php' method=
+				  'post'>
+				  <button type='submit' name='submit' class='btn btn-primary'>Logout</button>
+				  </form>
+				  ";
+						
+		}
+		else {
+			echo " <h4>Login</h4>
+		<form action='includes/login.php' method=
+	  'post'>
+		  <div class='form-group'>
+			<label for='exampleInputEmail1'>Username</label>
+			<input name='user' type='text' class='form-control'  placeholder='Enter Username'>
+				
+		  </div>
+		  <div class='form-group'>
+			<label for='password'>Password</label>
+			<input type='password' name='pass' class='form-control' placeholder='Enter Password'>
+		  </div>
+			  
+			
+			<button type='submit' name='submit' class='btn btn-primary'>Login</button>
+	   </form>";
+		}
+			
+		?>
+		
+		<!-- /.input-group -->
+	</div>
+
+
+
+
+
+
 	<!-- Blog Search Well -->
 	<div class="well">
 		<h4>Blog Search</h4>
@@ -15,7 +62,9 @@
 	   </form>
 		<!-- /.input-group -->
 	</div>
-
+	
+	
+	
 
 
 
@@ -42,10 +91,18 @@
 		<!-- /.row -->
 	</div>
 
+
+
+
+
 	<!-- Side Widget Well -->
 	<div class="well">
 		<h4>Side Widget Well</h4>
 		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Inventore, perspiciatis adipisci accusamus laudantium odit aliquam repellat tempore quos aspernatur vero.</p>
 	</div>
+
+
+
+
 
 </div>

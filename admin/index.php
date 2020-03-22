@@ -20,7 +20,7 @@
                            
 					   	<h1 class="page-header">
 							CMS ADMIN
-							<small>Website Dashboard</small>
+							<small>Welcome <?php echo $_SESSION['username'];?></small>
                         </h1>
                         	
 						
