@@ -112,13 +112,21 @@
 	
   </div>
   
-  <div class="form-group">
-  
-	<label for="post_status">Post Status</label>
+  <select name="post_status" id="" value=""> 
+		<option value="<?php echo $post_status;?>"><?php echo $post_status; ?></option>
+	<?php
 	
-	<input value="<?php echo $post_status;?>" type="text" class="form-control" id="post_status" name="post_status">
+		if ($post_status == 'Draft')
+		{
+			echo "<option value='Published'>Published</option>";
+		}
+		else {
+			echo "<option value='Draft'>Draft</option>";
+		}
+		
 	
-  </div>
+	?>
+	</select>
     
   <div class="form-group">
   	<label for="post_status">Post Image</label><br>

@@ -236,7 +236,7 @@ echo "<h2>
 		<img class='img-responsive' src='images/{$post_image}' alt=''>
 		<hr>
 		<p>{$post_content}</p>
-		<a class='btn btn-primary'' href='#'>Read More <span class='glyphicon glyphicon-chevron-right'></span></a>
+		
 
 		<hr>";
 }
@@ -584,6 +584,11 @@ if (!$delete_query) {
 	
 	header("Location: users.php");
 }
+
+
+
+
+
 
 
 ?>

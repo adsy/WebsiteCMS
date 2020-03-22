@@ -46,17 +46,13 @@
 			include 'includes/editUser.php';
 			break;
 			
-			
-			case '3';
-			include '';
-			break;
-			
 		default:
 			include "includes/viewAllUsers.php";
 			break;
 	}
 	
 ?>
+
 
 
 

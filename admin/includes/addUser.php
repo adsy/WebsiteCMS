@@ -23,6 +23,8 @@
 			die('QUERY FAILED' . mysqli_error($connection));
 		}
 		
+		echo "<h2>User Created: $username</h2><br>";
+		
 	}
 	
 ?>

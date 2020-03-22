@@ -36,20 +36,6 @@
 	
 	switch ($source) {
 			
-//			case '';
-//			include 'includes/addPosts.php';
-//			break;
-//			
-//
-//			case '';
-//			include 'includes/editPosts.php';
-//			break;
-//			
-//			
-//			case '3';
-//			include '';
-//			break;
-			
 		default:
 			include "includes/viewAllComments.php";
 			break;

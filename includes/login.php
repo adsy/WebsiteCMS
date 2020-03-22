@@ -28,24 +28,30 @@ if(isset($_POST['submit'])) {
 		$db_firstName = $row['firstName'];
 		$db_lastName = $row['lastName'];
 		$db_role = $row['role'];
+		$db_email = $row['email'];
 	}
 	
 	$incorrect ='<h4> Incorrect username or Password </h4>';
 	
-	if ($username ==== $db_username && $password === $db_password) {
+	if ($username === $db_username && $password === $db_password) {
 		
 		if ($db_role == 'Admin' ){
+			$_SESSION['userID'] = $db_user_id;
 			$_SESSION['username'] = $db_username;
 			$_SESSION['role'] = $db_role;
 			$_SESSION['firstName'] = $db_firstName;
 			$_SESSION['lastName'] = $db_lastName;
+			$_SESSION['email'] = $db_email;
+			
 			header("Location: ../admin");
 		} else if ($db_role == 'User' )
 		{
+			$_SESSION['userID'] = $db_user_id;
 			$_SESSION['username'] = $db_username;
 			$_SESSION['role'] = $db_role;
 			$_SESSION['firstName'] = $db_firstName;
 			$_SESSION['lastName'] = $db_lastName;
+			$_SESSION['email'] = $db_email;
 			header("Location: ../index.php");
 		}
 	}

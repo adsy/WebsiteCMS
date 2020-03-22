@@ -45,11 +45,6 @@
 			include 'includes/editPosts.php';
 			break;
 			
-			
-			case '3';
-			include '';
-			break;
-			
 		default:
 			include "includes/viewAllPosts.php";
 			break;
